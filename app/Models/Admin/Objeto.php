@@ -9,4 +9,8 @@ class Objeto extends Model
 {
     //use HasFactory;
     protected $table = 'objeto';
+
+    public function generacion() {
+        return $this->hasMany(Generacion::class); 
+    }
 }

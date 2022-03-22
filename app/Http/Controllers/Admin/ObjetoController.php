@@ -30,8 +30,8 @@ class ObjetoController extends Controller
     public function create()
     {
         $titlePage = "Crear Objeto";
-        $generaciones = Generacion::all();
-        return view('admin.objetos.crear', compact('titlePage', 'generaciones'));
+        $generacionObjeto = Generacion::all();
+        return view('admin.objetos.crear', ['generaciones' => $generacionObjeto], compact('titlePage'));
     }
 
     /**
@@ -51,7 +51,8 @@ class ObjetoController extends Controller
             'nombre_ale' => 'required',
             'nombre_ing' => 'required',
             'nombre_ita' => 'required',
-            'nombre_fra' => 'required'
+            'nombre_fra' => 'required',
+            'generacion_id' => 'required'
         ]);
 
         $objeto = new Objeto;
@@ -64,7 +65,7 @@ class ObjetoController extends Controller
         $objeto->nombre_ing = $request->nombre_ing;
         $objeto->nombre_ita = $request->nombre_ita;
         $objeto->nombre_fra = $request->nombre_fra;
-        $objeto->generacion = $request->generacion;
+        $objeto->generacion_id = $request->generacion_id;
         $objeto->save();
 
         return redirect()->route('objetos.index')->with('success', 'Se ha añadido el objeto');

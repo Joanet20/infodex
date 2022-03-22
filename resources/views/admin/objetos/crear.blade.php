@@ -7,7 +7,7 @@
 
     
   <div class="mb-3 p-3">
-  @error('generacion')
+  @error('generacion_id')
             <div class="alert alert-danger">{{ $message }}</div>
         @enderror
 
@@ -47,11 +47,11 @@
             <label for="nombre_fra" class="form-label">Nombre francés</label>
             <input type="text" class="form-control mb-2" name="nombre_fra" id="nombre_fra">
 
-            <label for="generacion" class="form-label">Generación</label>
-            <select class="form-select"  name="generacion">
+            <label for="generacion_id" class="form-label">Generación</label>
+            <select class="form-select"  name="generacion_id" id="generacion_id">
                 <option selected>Selecciona la generación</option>
-                @foreach ($generaciones as $generacio)
-                <option value="{{ $generacio->id }}">Generación {{ $generacio->num_generacion }}</option>
+                @foreach ($generaciones as $generacion)
+                <option value="{{ $generacion->id }}">Generación {{ $generacion->num_generacion }}</option>
                 @endforeach
             </select>
     

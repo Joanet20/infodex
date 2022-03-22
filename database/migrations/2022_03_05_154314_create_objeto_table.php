@@ -24,7 +24,8 @@ class CreateObjetoTable extends Migration
             $table->string('nombre_ing', 50);
             $table->string('nombre_ita', 50);
             $table->string('nombre_fra', 50);
-            $table->foreignId('generacion')->index('generacionObjeto');
+            $table->unsignedBigInteger('generacion_id');
+            $table->foreign('generacion_id')->references('id')->on('generacion');
             $table->timestamps();
         });
     }
