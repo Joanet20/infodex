@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\GeneracionController;
 use App\Http\Controllers\Admin\VersionController;
 use App\Http\Controllers\Admin\MetodoEvolucionController;
 use App\Http\Controllers\Admin\ObjetoController;
+use App\Http\Controllers\Admin\HabilidadController;
 
 
 /*
@@ -68,6 +69,9 @@ Route::resource('/admin/metodosEvolucion', MetodoEvolucionController::class);
 
 // Objetos
 Route::resource('/admin/objetos', ObjetoController::class);
+
+// Habilidades
+Route::resource('/admin/habilidades', HabilidadController::class);
 
 
 Auth::routes();

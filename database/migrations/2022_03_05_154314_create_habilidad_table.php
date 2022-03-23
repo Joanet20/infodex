@@ -24,7 +24,6 @@ class CreateHabilidadTable extends Migration
             $table->string('efecto_en_combate', 500)->nullable();
             $table->string('efecto_fuera_combate', 500)->nullable();
             $table->string('descripcion', 500);
-            $table->foreignId('generacion')->index('generacionHabilidad');
             $table->string('cambios', 500)->nullable();
             $table->timestamps();
         });

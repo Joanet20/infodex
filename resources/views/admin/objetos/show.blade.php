@@ -4,12 +4,12 @@
 
 <div class="container w-25 border p-4">
     <div class="row mx-auto">
-    <form  method="POST" action="{{ route('objetos.update', ['objetos' => $objeto->id]) }}">
+    <form  method="POST" action="{{ route('objetos.update', ['objeto' => $objeto->id]) }}">
         @method('PATCH')
         @csrf
 
         <div class="mb-3 col">
-            @error('nombre')
+            @error('generacion_id')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
@@ -25,14 +25,18 @@
 
             <label for="descripcion" class="form-label">Descripción</label>
             <!--input type="number" class="form-control mb-2" name="descripcion" id="descripcion" value="{{ $objeto->descripcion }}"-->
-            <textarea clclass="form-control mb-2" name="descripcion" id="descripcion" value="{{ $objeto->descripcion }}" aria-label="With textarea"></textarea>
+            <textarea class="form-control mb-2" name="descripcion" id="descripcion" value="{{ $objeto->descripcion }}" aria-label="With textarea">{{ $objeto->descripcion }}</textarea>
 
             <label for="categoria" class="form-label">Categoría</label>
             <!--input type="number" class="form-control mb-2" name="categoria" id="categoria" value="{{ $objeto->categoria }}"-->
-            <select class="form-select" id="categoria">
-                <option selected>Selecciona la categoria</option>
-                @foreach (config('enum.categoria') as $categoria)
+            <select class="form-select" name="categoria" id="categoria">
+                @foreach (config('enums.categoria') as $categoria)
+                @if ($objeto->categoria == $categoria)
+                <option selected value="{{ $categoria }}">{{ $categoria }}</option>
+                @else
                 <option value="{{ $categoria }}">{{ $categoria }}</option>
+                @endif
+                
                 @endforeach
             </select>
 
@@ -51,11 +55,17 @@
             <label for="nombre_fra" class="form-label">Nombre francés</label>
             <input type="text" class="form-control mb-2" name="nombre_fra" id="nombre_fra" value="{{ $objeto->nombre_fra }}">
 
-            <label for="generacion" class="form-label">Generación</label>
-            <select class="form-select" id="generacion">
-                <option selected>Selecciona la generación</option>
+            <label for="generacion_id" class="form-label">Generación</label>
+            <select class="form-select" name="generacion_id" id="generacion_id">
+                
                 @foreach ($generaciones as $generacion)
-                <option value="{{ $generacion->id }}">{{ $generacion->nombre }}</option>
+
+                @if ($objeto->generacion_id == $generacion->id)
+                <option selected value="{{ $generacion->id }}">{{ $generacion->num_generacion }}</option>
+                @else
+                <option value="{{ $generacion->id }}">{{ $generacion->num_generacion }}</option>
+                @endif
+                
                 @endforeach
             </select>
              

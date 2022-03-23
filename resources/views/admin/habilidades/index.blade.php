@@ -4,33 +4,33 @@
 
 <div class="col-6 mx-auto border-top border-end border-start">
 
-  <a href="{{ route('objetos.create') }}" class="btn btn-primary m-3">
+  <a href="{{ route('habilidades.create') }}" class="btn btn-primary m-3">
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 18">
       <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
     </svg>  
-    Crear Objeto
+    Crear Habilidad
   </a>
 
   <table class="table table-striped">
   <thead>
     <tr>
-      <th>Objeto</th>
+      <th>Habilidad</th>
       <th>Editar</th>
       <th>Eliminar</th>
     </tr>
   </thead>
 
   <tbody>
-  @foreach ($objetos as $objeto)
+  @foreach ($habilidades as $habilidad)
     <tr>
       <td>
-        <span class="fs-5">{{ $objeto->nombre }}</span>
+        <span class="fs-5">{{ $habilidad->nombre }}</span>
       </td>
       <td>
-        <a href="{{ route('objetos.show', ['objeto' => $objeto->id]) }}" type="submit" class="btn btn-success btn-sm">Editar</a>
+        <a href="{{ route('habilidades.show', ['habilidade' => $habilidad->id]) }}" type="submit" class="btn btn-success btn-sm">Editar</a>
       </td>
       <td>
-        <form action="{{ route('objetos.destroy', [$objeto->id]) }}" method="POST">
+        <form action="{{ route('habilidades.destroy', [$habilidad->id]) }}" method="POST">
           @method('DELETE')
           @csrf
           <button class="btn btn-danger btn-sm">Eliminar</button>

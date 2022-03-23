@@ -18,8 +18,7 @@ class ObjetoController extends Controller
     {
         $titlePage = "Objetos";
         $objetos = Objeto::all();
-        $generaciones = Generacion::all();
-        return view('admin.objetos.index', ['objetos' => $objetos, 'generaciones' => $generaciones], compact('titlePage'));
+        return view('admin.objetos.index', ['objetos' => $objetos], compact('titlePage'));
     }
 
     /**
@@ -30,8 +29,9 @@ class ObjetoController extends Controller
     public function create()
     {
         $titlePage = "Crear Objeto";
-        $generacionObjeto = Generacion::all();
-        return view('admin.objetos.crear', ['generaciones' => $generacionObjeto], compact('titlePage'));
+        $generaciones = Generacion::all();
+        $objetos = Objeto::all();
+        return view('admin.objetos.crear', ['generaciones' => $generaciones, 'objetos' => $objetos], compact('titlePage'));
     }
 
     /**
@@ -44,15 +44,13 @@ class ObjetoController extends Controller
     {
         $request->validate([
             'nombre' => 'required',
-            'precio' => 'required',
             'descripcion' => 'required',
             'categoria' => 'required',
             'nombre_jap' => 'required',
             'nombre_ale' => 'required',
             'nombre_ing' => 'required',
             'nombre_ita' => 'required',
-            'nombre_fra' => 'required',
-            'generacion_id' => 'required'
+            'nombre_fra' => 'required'
         ]);
 
         $objeto = new Objeto;
@@ -79,10 +77,11 @@ class ObjetoController extends Controller
      */
     public function show($id)
     {
+
         $objeto = Objeto::find($id);
-        $generacion = Generacion::all();
+        $generaciones = Generacion::all();
         $titlePage = $objeto->nombre;
-        return view('admin.objetos.show', ['objeto' => $objeto, 'generacion' => $generacion], compact('titlePage'));
+        return view('admin.objetos.show', ['objeto' => $objeto, 'generaciones' => $generaciones], compact('titlePage'));
     }
 
     /**
@@ -116,7 +115,7 @@ class ObjetoController extends Controller
         $objeto->nombre_ing = $request->nombre_ing;
         $objeto->nombre_ita = $request->nombre_ita;
         $objeto->nombre_fra = $request->nombre_fra;
-        $objeto->generacion = $request->generacion;
+        $objeto->generacion_id = $request->generacion_id;
         $objeto->save();
 
         return redirect()->route('objetos.index')->with('success', 'Objeto actualizado');

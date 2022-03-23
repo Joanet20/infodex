@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form class="col-3 mx-auto mt-3 border" action="{{ route('objetos.store') }}" method="POST">
+<form class="col-3 mx-auto mt-3 border" action="{{ route('habilidades.store') }}" method="POST">
     @csrf
 
     
@@ -14,23 +14,8 @@
         @if (session('success'))
                 <h6 class="alert alert-success">{{ session('success') }}</h6>
         @endif
-        <label for="nombre" class="form-label">Objeto</label>
+        <label for="nombre" class="form-label">Habilidad</label>
             <input type="text" class="form-control mb-2" name="nombre" id="nombre">
-
-            <label for="precio" class="form-label">Precio</label>
-            <input type="number" class="form-control mb-2" name="precio" id="precio">
-
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea class="form-control mb-2" name="descripcion" id="descripcion" aria-label="With textarea"></textarea>
-
-            <label for="categoria" class="form-label">Categoría</label>
-            
-            <select class="form-select" name="categoria" id="categoria">
-                <option selected>Selecciona la categoria</option>
-                @foreach (config('enums.categoria') as $categoria)
-                <option value="{{ $categoria }}">{{ $categoria }}</option>
-                @endforeach
-            </select>
 
             <label for="nombre_jap" class="form-label">Nombre japonés</label>
             <input type="text" class="form-control mb-2" name="nombre_jap" id="nombre_jap">
@@ -47,11 +32,28 @@
             <label for="nombre_fra" class="form-label">Nombre francés</label>
             <input type="text" class="form-control mb-2" name="nombre_fra" id="nombre_fra">
 
+            <label for="efecto_en_combate" class="form-label">Efecto en combate</label>
+            <textarea class="form-control mb-2" name="efecto_en_combate" id="efecto_en_combate" aria-label="With textarea"></textarea>
+
+            <label for="efecto_fuera_combate" class="form-label">Efecto fuera de combate</label>
+            <textarea class="form-control mb-2" name="efecto_fuera_combate" id="efecto_fuera_combate" aria-label="With textarea"></textarea>
+
+            <label for="descripcion" class="form-label">Descripción</label>
+            <textarea class="form-control mb-2" name="descripcion" id="descripcion" aria-label="With textarea"></textarea>
+
+            <label for="cambios" class="form-label">Cambios respecto a generaciones anteriores</label>
+            <textarea class="form-control mb-2" name="cambios" id="cambios" aria-label="With textarea"></textarea>
+
             <label for="generacion_id" class="form-label">Generación</label>
-            <select class="form-select"  name="generacion_id" id="generacion_id">
-                <option selected>Selecciona la generación</option>
+            <select class="form-select" name="generacion_id" id="generacion_id">
+
+
+                <option selected >Selecciona una generación</option>
                 @foreach ($generaciones as $generacion)
+                
                 <option value="{{ $generacion->id }}">Generación {{ $generacion->num_generacion }}</option>
+                
+                
                 @endforeach
             </select>
     

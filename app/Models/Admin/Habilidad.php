@@ -5,8 +5,8 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Objeto extends Model
+class Habilidad extends Model
 {
     //use HasFactory;
-    protected $table = 'objeto';
+    protected $table = 'habilidad';
 }
