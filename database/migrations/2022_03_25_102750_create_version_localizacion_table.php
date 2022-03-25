@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLocalizacionTable extends Migration
+class CreateVersionLocalizacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateLocalizacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('localizacion', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre', 50);
-            $table->timestamps();
+        Schema::create('version_localizacion', function (Blueprint $table) {
+            $table->id();
         });
     }
 
@@ -27,6 +25,6 @@ class CreateLocalizacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('localizacion');
+        Schema::dropIfExists('version_localizacion');
     }
 }

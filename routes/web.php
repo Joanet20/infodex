@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\VersionController;
 use App\Http\Controllers\Admin\MetodoEvolucionController;
 use App\Http\Controllers\Admin\ObjetoController;
 use App\Http\Controllers\Admin\HabilidadController;
+use App\Http\Controllers\Admin\LocalizacionController;
 
 
 /*
@@ -72,6 +73,9 @@ Route::resource('/admin/objetos', ObjetoController::class);
 
 // Habilidades
 Route::resource('/admin/habilidades', HabilidadController::class);
+
+// Localizaciones
+Route::resource('/admin/localizaciones', LocalizacionController::class);
 
 
 Auth::routes();
