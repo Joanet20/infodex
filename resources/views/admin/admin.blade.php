@@ -44,6 +44,10 @@
         <a class="text-decoration-none text-dark" href=" {{ route('habilidades.index') }}">Habilidades</a>
       </div>
 
+      <div class="col-3  text-center py-2">
+        <a class="text-decoration-none text-dark" href=" {{ route('localizaciones.index') }}">Localizaciones</a>
+      </div>
+
     </div>    
 
       @yield('content')

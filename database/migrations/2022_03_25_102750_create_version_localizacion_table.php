@@ -15,6 +15,7 @@ class CreateVersionLocalizacionTable extends Migration
     {
         Schema::create('version_localizacion', function (Blueprint $table) {
             $table->id();
+            $table->timestamps();
         });
     }
 

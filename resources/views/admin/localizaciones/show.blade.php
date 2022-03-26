@@ -4,7 +4,7 @@
 
 <div class="container w-25 border p-4">
     <div class="row mx-auto">
-    <form  method="POST" action="{{ route('localizaciones.update', ['localizaciones' => $localizacion->id]) }}">
+    <form  method="POST" action="{{ route('localizaciones.update', ['localizacione' => $localizacion->id]) }}">
         @method('PATCH')
         @csrf
 
@@ -23,23 +23,25 @@
             <label for="version_id" class="form-label">Versiones a las que pertenece</label>
             
             @foreach ($versiones as $version)
+                @if ($versionLocalizacion->version_id == $version->id)
                 @foreach ($versionesLocalizacion as $versionLocalizacion)
-                    @if ($versionLocalizacion->localizacion_id == localizacion->id)
+                    @if ($versionLocalizacion->localizacion_id == $localizacion->id)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id" checked>
+                        <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id[]" checked>
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $version->nombre}}
                         </label>
                     </div>
                     @else
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id">
+                        <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id[]">
                         <label class="form-check-label" for="flexCheckChecked">
                             {{ $version->nombre}}
                         </label>
                     </div>
                     @endif
                 @endforeach
+                @endif
             @endforeach
 
              

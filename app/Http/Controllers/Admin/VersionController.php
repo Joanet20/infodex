@@ -47,6 +47,7 @@ class VersionController extends Controller
         $version->nombre = $request->nombre;
         $version->save();
 
+
         return redirect()->route('versiones.index')->with('success', 'Se ha añadido la versión');
     }
 

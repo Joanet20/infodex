@@ -27,7 +27,7 @@
         <span class="fs-5">{{ $localizacion->nombre }}</span>
       </td>
       <td>
-        <a href="{{ route('localizaciones.show', ['localizaciones' => $localizacion->id]) }}" type="submit" class="btn btn-success btn-sm">Editar</a>
+        <a href="{{ route('localizaciones.show', ['localizacione' => $localizacion->id]) }}" type="submit" class="btn btn-success btn-sm">Editar</a>
       </td>
       <td>
         <form action="{{ route('localizaciones.destroy', [$localizacion->id]) }}" method="POST">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Localizacion;
 use App\Models\Admin\VersionLocalizacion;
+use App\Models\Admin\Version;
 
 class LocalizacionController extends Controller
 {
@@ -29,7 +30,8 @@ class LocalizacionController extends Controller
     public function create()
     {
         $titlePage = "Crear Localización";
-        return view('admin.localizaciones.crear', compact('titlePage'));
+        $versiones = Version::all();
+        return view('admin.localizaciones.crear', ['versiones' => $versiones], compact('titlePage'));
     }
 
     /**
@@ -45,12 +47,27 @@ class LocalizacionController extends Controller
         ]);
 
         $localizacion = new Localizacion;
-        $versionLocalizacion = new VersionLocalizacion;
         $localizacion->nombre = $request->nombre;
-        $versionLocalizacion->version_id = $request->version_id;
-        $versionLocalizacion->localizacion_id = $request->localizacion_id;
         $localizacion->save();
-        $versionLocalizacion->save();
+
+        $id_loc = $localizacion->id;
+
+        
+
+        
+        $versiones = $request->version_id;
+        
+
+
+        foreach ($versiones as $version) {
+            $versionLocalizacion = new VersionLocalizacion;
+            $idVers = intval($version);
+            $versionLocalizacion->version_id = $idVers;
+            $versionLocalizacion->localizacion_id = $id_loc;
+            $versionLocalizacion->save();
+        }
+        
+        //dd($versiones);
 
         return redirect()->route('localizaciones.index')->with('success', 'Se ha añadido la localización');
     }
@@ -65,7 +82,9 @@ class LocalizacionController extends Controller
     {
         $localizacion = Localizacion::find($id);
         $titlePage = $localizacion->nombre;
-        return view('admin.localizaciones.show', ['localizacion' => $localizacion], compact('titlePage'));
+        $versiones = Version::all();
+        $versionesLocalizacion = VersionLocalizacion::all();
+        return view('admin.localizaciones.show', ['localizacion' => $localizacion, 'versiones' => $versiones, 'versionesLocalizacion' => $versionesLocalizacion], compact('titlePage'));
     }
 
     /**
@@ -110,6 +129,15 @@ class LocalizacionController extends Controller
     public function destroy($id)
     {
         $localizacion = Localizacion::find($id);
+
+        $versionesLocalizacion = VersionLocalizacion::all();
+
+        foreach ($versionesLocalizacion as $versionLocalizacion) {
+            if ($versionLocalizacion->localizacion_id == $localizacion->id) {
+                $versionLocalizacion->delete();
+            }
+        }
+
         $localizacion->delete();
         return redirect()->route('localizaciones.index')->with('success', 'Se ha borrado la localización');
     }
