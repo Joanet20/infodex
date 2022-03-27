@@ -67,7 +67,7 @@ class LocalizacionController extends Controller
             $versionLocalizacion->save();
         }
         
-        //dd($versiones);
+        dd($versiones);
 
         return redirect()->route('localizaciones.index')->with('success', 'Se ha añadido la localización');
     }
@@ -123,7 +123,6 @@ class LocalizacionController extends Controller
     public function update(Request $request, $id)
     {
         $localizacion = Localizacion::find($id);
-        $versiones = Version::all();
         $versionesLocalizacion = VersionLocalizacion::all();
 
         /*$localizacion->nombre = $request->nombre;
@@ -132,22 +131,42 @@ class LocalizacionController extends Controller
         $localizacion->save();
         $versionLocalizacion->save();*/
 
-        $versiones = $request->version_id;
-        
-
+        $arrayIds = [];
 
         foreach ($versionesLocalizacion as $versLoc) {
-            if ($versLoc->localizacion->id) {
-                # code...
+            if ($versLoc->localizacion_id == $id) {
+                $arrayIds[] = $versLoc->version_id;
             }
         }
-        foreach ($versiones as $version) {
+
+        $versionesMarcadas = $request->version_id;
+
+        foreach ($versionesMarcadas as $versMark) {
+            $versId = intval($versMark);
+            if (!in_array($versId, $arrayIds)) {
+                $versionLocalizacion = new VersionLocalizacion;
+                $versionLocalizacion->version_id = $versId;
+                $versionLocalizacion->localizacion_id = $id;
+                $versionLocalizacion->save();
+            }
+        }
+
+        //dd($versionesMarcadas);
+
+
+        $localizacion->nombre = $request->nombre;
+        $localizacion->save();
+
+        
+
+        
+        /*foreach ($versiones as $version) {
             $versionLocalizacion = new VersionLocalizacion;
             $idVers = intval($version);
             $versionLocalizacion->version_id = $idVers;
             $versionLocalizacion->localizacion_id = $id_loc;
             $versionLocalizacion->save();
-        }
+        }*/
 
         return redirect()->route('localizaciones.index')->with('success', 'Localización actualizada');
     }

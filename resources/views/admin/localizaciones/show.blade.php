@@ -27,15 +27,15 @@
             @foreach ($versiones as $version)
                 @if (in_array($version->id, $arrayIds))
                 <div class="form-check col-4">
-                            <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id[]" checked>
-                            <label class="form-check-label" for="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="{{ $version->id }}" id="version_id" name="version_id[]" checked>
+                            <label class="form-check-label" for="version_id">
                                 {{ $version->nombre}}
                             </label>
                         </div>
                 @else
                 <div class="form-check col-4">
-                            <input class="form-check-input" type="checkbox" value="" id="version_id" name="version_id[]">
-                            <label class="form-check-label" for="flexCheckChecked">
+                            <input class="form-check-input" type="checkbox" value="{{ $version->id }}" id="version_id" name="version_id[]">
+                            <label class="form-check-label" for="version_id">
                                 {{ $version->nombre}}
                             </label>
                         </div>
