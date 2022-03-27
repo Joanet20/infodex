@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Admin\Localizacion;
 use App\Models\Admin\VersionLocalizacion;
 use App\Models\Admin\Version;
+use App\Models\Admin\Region;
 
 class LocalizacionController extends Controller
 {
@@ -31,7 +32,8 @@ class LocalizacionController extends Controller
     {
         $titlePage = "Crear Localización";
         $versiones = Version::all();
-        return view('admin.localizaciones.crear', ['versiones' => $versiones], compact('titlePage'));
+        $regiones = Region::all();
+        return view('admin.localizaciones.crear', ['regiones' => $regiones, 'versiones' => $versiones], compact('titlePage'));
     }
 
     /**
@@ -48,6 +50,7 @@ class LocalizacionController extends Controller
 
         $localizacion = new Localizacion;
         $localizacion->nombre = $request->nombre;
+        $localizacion->region_id = $request->region_id;
         $localizacion->save();
 
         $id_loc = $localizacion->id;
@@ -67,7 +70,7 @@ class LocalizacionController extends Controller
             $versionLocalizacion->save();
         }
         
-        dd($versiones);
+        //dd($versiones);
 
         return redirect()->route('localizaciones.index')->with('success', 'Se ha añadido la localización');
     }
@@ -83,6 +86,7 @@ class LocalizacionController extends Controller
         $localizacion = Localizacion::find($id);
         $titlePage = $localizacion->nombre;
         $versiones = Version::all();
+        $regiones = Region::all();
         $versionesLocalizacion = VersionLocalizacion::all();
 
         $arrayIds = [];
@@ -99,7 +103,7 @@ class LocalizacionController extends Controller
         }
 
         //dd($arrayIds);
-        return view('admin.localizaciones.show', ['localizacion' => $localizacion, 'versiones' => $versiones, 'versionesLocalizacion' => $versionesLocalizacion, 'arrayIds' => $arrayIds], compact('titlePage'));
+        return view('admin.localizaciones.show', ['regiones' => $regiones, 'localizacion' => $localizacion, 'versiones' => $versiones, 'versionesLocalizacion' => $versionesLocalizacion, 'arrayIds' => $arrayIds], compact('titlePage'));
     }
 
     /**
@@ -151,10 +155,18 @@ class LocalizacionController extends Controller
             }
         }
 
+        foreach ($versionesLocalizacion as $versLoc) {
+            $versId = intval($versLoc->version_id);
+            if (!in_array($versId, $versionesMarcadas) && (in_array($versId, $arrayIds))) {
+                $versLoc->delete();
+            }
+        }
+
         //dd($versionesMarcadas);
 
 
         $localizacion->nombre = $request->nombre;
+        $localizacion->region_id = $request->region_id;
         $localizacion->save();
 
         

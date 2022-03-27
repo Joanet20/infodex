@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form class="col-3 mx-auto mt-3 border" action="{{ route('localizaciones.store') }}" method="POST">
+<form class="col-3 mx-auto mt-3 border" action="{{ route('regiones.store') }}" method="POST">
     @csrf
 
     
@@ -14,21 +14,10 @@
         @if (session('success'))
                 <h6 class="alert alert-success">{{ session('success') }}</h6>
         @endif
-    <label for="nombre" class="form-label">Localización</label>
+    <label for="nombre" class="form-label">Nombre</label>
     <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="nombre">
 
-    <label for="region_id" class="form-label">Región</label>
-            <select class="form-select" name="region_id" id="region_id">
-
-
-                <option selected >Selecciona una región</option>
-                @foreach ($regiones as $region)
-                
-                <option value="{{ $region->id }}">{{ $region->nombre }}</option>
-                
-                
-                @endforeach
-            </select>
+    <label for="version_id" class="form-label">Versiones disponibles</label>
 
     <div class="d-flex flex-wrap">
     @foreach ($versiones as $version)
@@ -40,10 +29,6 @@
     </div>
     @endforeach
     </div>
-
-
-
-    
     
   </div>
   <button type="submit" class="btn btn-primary m-3">Crear</button>

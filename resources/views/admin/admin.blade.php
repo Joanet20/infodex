@@ -48,6 +48,14 @@
         <a class="text-decoration-none text-dark" href=" {{ route('localizaciones.index') }}">Localizaciones</a>
       </div>
 
+      <div class="col-3  text-center py-2">
+        <a class="text-decoration-none text-dark" href=" {{ route('regiones.index') }}">Regiones</a>
+      </div>
+
+      <div class="col-3  text-center py-2">
+        <a class="text-decoration-none text-dark" href=" {{ route('pokedexs.index') }}">Pokedex</a>
+      </div>
+
     </div>    
 
       @yield('content')

@@ -4,7 +4,7 @@
 
 <div class="container w-25 border p-4">
     <div class="row mx-auto">
-    <form  method="POST" action="{{ route('localizaciones.update', ['localizacione' => $localizacion->id]) }}">
+    <form  method="POST" action="{{ route('regiones.update', ['regione' => $region->id]) }}">
         @method('PATCH')
         @csrf
 
@@ -17,22 +17,8 @@
                     <h6 class="alert alert-success">{{ session('success') }}</h6>
             @endif
 
-            <label for="nombre" class="form-label">Localización</label>
-            <input type="text" class="form-control mb-2" name="nombre" id="nombre" value="{{ $localizacion->nombre }}">
-
-            <label for="region_id" class="form-label">Región</label>
-            <select class="form-select" name="region_id" id="region_id">
-                
-                @foreach ($regiones as $region)
-
-                @if ($localizacion->region_id == $region->id)
-                <option selected value="{{ $region->id }}">{{ $region->nombre }}</option>
-                @else
-                <option value="{{ $region->id }}">{{ $region->nombre }}</option>
-                @endif
-                
-                @endforeach
-            </select>
+            <label for="nombre" class="form-label">Región</label>
+            <input type="text" class="form-control mb-2" name="nombre" id="nombre" value="{{ $region->nombre }}">
 
             <label for="version_id" class="form-label">Versiones a las que pertenece</label>
 
@@ -58,10 +44,9 @@
             @endforeach
 
             </div>
-            
 
              
-            <input type="submit" value="Actualizar localización" class="btn btn-primary my-2" />
+            <input type="submit" value="Actualizar región" class="btn btn-primary my-2" />
         </div>
     </form>
 

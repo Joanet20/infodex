@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\MetodoEvolucionController;
 use App\Http\Controllers\Admin\ObjetoController;
 use App\Http\Controllers\Admin\HabilidadController;
 use App\Http\Controllers\Admin\LocalizacionController;
+use App\Http\Controllers\Admin\RegionController;
+use App\Http\Controllers\Admin\PokedexController;
 
 
 /*
@@ -76,6 +78,12 @@ Route::resource('/admin/habilidades', HabilidadController::class);
 
 // Localizaciones
 Route::resource('/admin/localizaciones', LocalizacionController::class);
+
+// Regiones
+Route::resource('/admin/regiones', RegionController::class);
+
+// Pokedexs
+Route::resource('/admin/pokedexs', PokedexController::class);
 
 
 Auth::routes();
