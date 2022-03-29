@@ -22,11 +22,9 @@ class CreateMovimientoTable extends Migration
             $table->integer('pp');
             $table->integer('prioridad');
             $table->integer('potencia')->nullable();
-            $table->enum('clase', ['Físico', 'Especial', 'Estado', '']);
+            $table->enum('clase', array_values(config('enumClaseMov.clase')));
             $table->string('cambios', 500)->nullable();
-            $table->enum('objetivo', ['Usuario', 'Pokémon aliado', 'Todos los aliados', 'Usuario o Pokémon aliado', 'Equipo aliado', 'Elegido', 'Oponente elegido', 'Oponente aleatorio', 'Oponentes adyacentes', 'Todos los oponentes', 'Pokémon adyacentes', 'Todos los Pokémon', '']);
-            $table->foreignId('generacion')->index('generacionMovimiento');
-            $table->foreignId('tipo')->index('tipoMovimiento');
+            $table->enum('objetivo', array_values(config('enumObjetivoMov.objetivo')));
             $table->timestamps();
         });
     }
