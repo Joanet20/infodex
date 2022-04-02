@@ -29,7 +29,8 @@ class AddForeignKeysToRegionesVersionTable extends Migration
     public function down()
     {
         Schema::table('regiones_version', function (Blueprint $table) {
-            //
+            $table->dropForeign('regiones_version_region_id_foreign');
+            $table->dropForeign('regiones_version_version_id_foreign');
         });
     }
 }

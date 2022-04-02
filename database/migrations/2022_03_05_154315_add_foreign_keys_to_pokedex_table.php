@@ -27,7 +27,7 @@ class AddForeignKeysToPokedexTable extends Migration
     public function down()
     {
         Schema::table('pokedex', function (Blueprint $table) {
-            //
+            $table->dropForeign('pokedex_region_id_foreign');
         });
     }
 }

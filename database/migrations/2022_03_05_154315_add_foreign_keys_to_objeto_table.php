@@ -27,7 +27,7 @@ class AddForeignKeysToObjetoTable extends Migration
     public function down()
     {
         Schema::table('objeto', function (Blueprint $table) {
-            //
+            $table->dropForeign('objeto_generacion_id_foreign');
         });
     }
 }

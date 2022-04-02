@@ -27,7 +27,7 @@ class AddForeignKeysToHabilidadTable extends Migration
     public function down()
     {
         Schema::table('habilidad', function (Blueprint $table) {
-            //
+            $table->dropForeign('habilidad_generacion_id_foreign');
         });
     }
 }

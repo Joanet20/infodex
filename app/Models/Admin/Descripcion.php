@@ -5,8 +5,8 @@ namespace App\Models\Admin;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pokemon extends Model
+class Descripcion extends Model
 {
     //use HasFactory;
-    protected $table = 'pokemon';
+    protected $table = 'descripcion';
 }

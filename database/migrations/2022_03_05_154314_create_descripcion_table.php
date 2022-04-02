@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDescripcionVersionTable extends Migration
+class CreateDescripcionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateDescripcionVersionTable extends Migration
      */
     public function up()
     {
-        Schema::create('descripcion_version', function (Blueprint $table) {
-            $table->foreignId('id_pokemon')->index('descripcionPokemon');
-            $table->foreignId('id_version')->index('descripcionVersion');
+        Schema::create('descripcion', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('descripcion', 500);
         });
     }
@@ -27,6 +26,6 @@ class CreateDescripcionVersionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('descripcion_version');
+        Schema::dropIfExists('descripcion');
     }
 }

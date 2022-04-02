@@ -27,7 +27,7 @@ class AddForeignKeysToLocalizacionTable extends Migration
     public function down()
     {
         Schema::table('localizacion', function (Blueprint $table) {
-            //
+            $table->dropForeign('localizacion_region_id_foreign');
         });
     }
 }

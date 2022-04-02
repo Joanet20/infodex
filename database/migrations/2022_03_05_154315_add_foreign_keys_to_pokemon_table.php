@@ -47,7 +47,17 @@ class AddForeignKeysToPokemonTable extends Migration
     public function down()
     {
         Schema::table('pokemon', function (Blueprint $table) {
-            //
+            $table->dropForeign('pokemon_crecimiento_id_foreign');
+            $table->dropForeign('pokemon_cicloshuevo_id_foreign');
+            $table->dropForeign('pokemon_objeto_id_foreign');
+            $table->dropForeign('pokemon_grupohuevo_id_foreign');
+            $table->dropForeign('pokemon_grupohuevo2_id_foreign');
+            $table->dropForeign('pokemon_habilidad_id_foreign');
+            $table->dropForeign('pokemon_habilidad2_id_foreign');
+            $table->dropForeign('pokemon_habilidadoculta_id_foreign');
+            $table->dropForeign('pokemon_tipo_id_foreign');
+            $table->dropForeign('pokemon_tipo2_id_foreign');
+            $table->dropForeign('pokemon_generacion_id_foreign');
         });
     }
 }

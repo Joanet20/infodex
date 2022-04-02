@@ -56,14 +56,46 @@ class PokemonController extends Controller
             'nombre_ale' => 'required',
             'nombre_ing' => 'required',
             'nombre_ita' => 'required',
-            'nombre_fra' => 'required',
-            'unicaForma' => 'required',
+            'nombre_fra' => 'required'
         ]);
 
         $pokemon = new Pokemon;
-        $pokemon->nombre = $request->num_ciclos;
-        $pokemon->min_pasos = $request->min_pasos;
-        $pokemon->max_pasos = $request->max_pasos;
+        $pokemon->nombre = $request->nombre;
+        $pokemon->experienciaBase = $request->experienciaBase;
+        $pokemon->altura = $request->altura;
+        $pokemon->peso = $request->peso;
+        $pokemon->dexNacional = $request->dexNacional;
+        $pokemon->cambios = $request->cambios;
+        $pokemon->categoria = $request->categoria;
+        $pokemon->evEntregado = $request->evEntregado;
+        $pokemon->cantidadEV = $request->cantidadEV;
+        $pokemon->evEntregado2 = $request->evEntregado2;
+        $pokemon->cantidadEV2 = $request->cantidadEV2;
+        $pokemon->evEntregado3 = $request->evEntregado3;
+        $pokemon->cantidadEV3 = $request->cantidadEV3;
+        $pokemon->ratioCaptura = $request->ratioCaptura;
+        $pokemon->amistadBase = $request->amistadBase;
+        $pokemon->probMacho = $request->probMacho;
+        $pokemon->probHembra = $request->probHembra;
+        $pokemon->sinGenero = $request->sinGenero;
+        $pokemon->unicaForma = $request->unicaForma;
+        $pokemon->nombreForma = $request->nombreForma;
+        $pokemon->nombre_jap = $request->nombre_jap;
+        $pokemon->nombre_ale = $request->nombre_ale;
+        $pokemon->nombre_ing = $request->nombre_ing;
+        $pokemon->nombre_ita = $request->nombre_ita;
+        $pokemon->nombre_fra = $request->nombre_fra;
+        $pokemon->crecimiento_id = $request->crecimiento_id;
+        $pokemon->ciclosHuevo_id = $request->ciclosHuevo_id;
+        $pokemon->objeto_id = $request->objeto_id;
+        $pokemon->grupoHuevo_id = $request->grupoHuevo_id;
+        $pokemon->grupoHuevo2_id = $request->grupoHuevo2_id;
+        $pokemon->habilidad_id = $request->habilidad_id;
+        $pokemon->habilidad2_id = $request->habilidad2_id;
+        $pokemon->habilidadOculta_id = $request->habilidadOculta_id;
+        $pokemon->tipo_id = $request->tipo_id;
+        $pokemon->tipo2_id = $request->tipo2_id;
+        $pokemon->generacion_id = $request->generacion_id;
         $pokemon->save();
 
         return redirect()->route('pokemons.index')->with('success', 'Se ha añadido el Pokémon');
@@ -78,7 +110,7 @@ class PokemonController extends Controller
     public function show($id)
     {
         $pokemon = Pokemon::find($id);
-        $titlePage = $pokemon->num_ciclos;
+        $titlePage = $pokemon->nombreForma;
         return view('admin.pokemons.show', ['pokemon' => $pokemon], compact('titlePage'));
     }
 
@@ -104,12 +136,45 @@ class PokemonController extends Controller
     {
         $pokemon = Pokemon::find($id);
         
-        $pokemon->num_ciclos = $request->num_ciclos;
-        $pokemon->min_pasos = $request->min_pasos;
-        $pokemon->max_pasos = $request->max_pasos;
+        $pokemon->nombre = $request->nombre;
+        $pokemon->experienciaBase = $request->experienciaBase;
+        $pokemon->altura = $request->altura;
+        $pokemon->peso = $request->peso;
+        $pokemon->dexNacional = $request->dexNacional;
+        $pokemon->cambios = $request->cambios;
+        $pokemon->categoria = $request->categoria;
+        $pokemon->evEntregado = $request->evEntregado;
+        $pokemon->cantidadEV = $request->cantidadEV;
+        $pokemon->evEntregado2 = $request->evEntregado2;
+        $pokemon->cantidadEV2 = $request->cantidadEV2;
+        $pokemon->evEntregado3 = $request->evEntregado3;
+        $pokemon->cantidadEV3 = $request->cantidadEV3;
+        $pokemon->ratioCaptura = $request->ratioCaptura;
+        $pokemon->amistadBase = $request->amistadBase;
+        $pokemon->probMacho = $request->probMacho;
+        $pokemon->probHembra = $request->probHembra;
+        $pokemon->sinGenero = $request->sinGenero;
+        $pokemon->unicaForma = $request->unicaForma;
+        $pokemon->nombreForma = $request->nombreForma;
+        $pokemon->nombre_jap = $request->nombre_jap;
+        $pokemon->nombre_ale = $request->nombre_ale;
+        $pokemon->nombre_ing = $request->nombre_ing;
+        $pokemon->nombre_ita = $request->nombre_ita;
+        $pokemon->nombre_fra = $request->nombre_fra;
+        $pokemon->crecimiento_id = $request->crecimiento_id;
+        $pokemon->ciclosHuevo_id = $request->ciclosHuevo_id;
+        $pokemon->objeto_id = $request->objeto_id;
+        $pokemon->grupoHuevo_id = $request->grupoHuevo_id;
+        $pokemon->grupoHuevo2_id = $request->grupoHuevo2_id;
+        $pokemon->habilidad_id = $request->habilidad_id;
+        $pokemon->habilidad2_id = $request->habilidad2_id;
+        $pokemon->habilidadOculta_id = $request->habilidadOculta_id;
+        $pokemon->tipo_id = $request->tipo_id;
+        $pokemon->tipo2_id = $request->tipo2_id;
+        $pokemon->generacion_id = $request->generacion_id;
         $pokemon->save();
 
-        return redirect()->route('pokemons.index')->with('success', 'Ciclo huevo actualizado');
+        return redirect()->route('pokemons.index')->with('success', 'Pokémon actualizado');
     }
 
     /**
@@ -122,6 +187,6 @@ class PokemonController extends Controller
     {
         $pokemon = Pokemon::find($id);
         $pokemon->delete();
-        return redirect()->route('pokemons.index')->with('success', 'Se ha borrado el ciclo huevo');
+        return redirect()->route('pokemons.index')->with('success', 'Se ha borrado el Pokémon');
     }
 }

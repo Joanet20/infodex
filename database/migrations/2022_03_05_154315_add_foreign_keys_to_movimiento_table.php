@@ -29,7 +29,8 @@ class AddForeignKeysToMovimientoTable extends Migration
     public function down()
     {
         Schema::table('movimiento', function (Blueprint $table) {
-            //
+            $table->dropForeign('movimiento_generacion_id_foreign');
+            $table->dropForeign('movimiento_tipo_id_foreign');
         });
     }
 }

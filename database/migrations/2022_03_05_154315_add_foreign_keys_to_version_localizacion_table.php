@@ -29,7 +29,8 @@ class AddForeignKeysToVersionLocalizacionTable extends Migration
     public function down()
     {
         Schema::table('version_localizacion', function (Blueprint $table) {
-            //
+            $table->dropForeign('version_localizacion_version_id_foreign');
+            $table->dropForeign('version_localizacion_localizacion_id_foreign');
         });
     }
 }
