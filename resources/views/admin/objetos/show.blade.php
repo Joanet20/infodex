@@ -61,9 +61,9 @@
                 @foreach ($generaciones as $generacion)
 
                 @if ($objeto->generacion_id == $generacion->id)
-                <option selected value="{{ $generacion->id }}">{{ $generacion->num_generacion }}</option>
+                <option selected value="{{ $generacion->id }}">Generación {{ $generacion->num_generacion }}</option>
                 @else
-                <option value="{{ $generacion->id }}">{{ $generacion->num_generacion }}</option>
+                <option value="{{ $generacion->id }}">Generación {{ $generacion->num_generacion }}</option>
                 @endif
                 
                 @endforeach

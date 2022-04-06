@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\LocalizacionController;
 use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\PokedexController;
 use App\Http\Controllers\Admin\MovimientoController;
+use App\Http\Controllers\Admin\PokemonController;
 
 
 /*
@@ -88,6 +89,9 @@ Route::resource('/admin/pokedexs', PokedexController::class);
 
 // Movimientos
 Route::resource('/admin/movimientos', MovimientoController::class);
+
+// Pokémon
+Route::resource('/admin/pokemons', PokemonController::class);
 
 
 Auth::routes();

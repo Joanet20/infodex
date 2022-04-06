@@ -5,6 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin\Pokemon;
+use App\Models\Admin\Crecimiento;
+use App\Models\Admin\CicloHuevo;
+use App\Models\Admin\Objeto;
+use App\Models\Admin\GrupoHuevo;
+use App\Models\Admin\Habilidad;
+use App\Models\Admin\Tipo;
+use App\Models\Admin\Generacion;
 
 class PokemonController extends Controller
 {
@@ -28,7 +35,20 @@ class PokemonController extends Controller
     public function create()
     {
         $titlePage = "Crear Pokémon";
-        return view('admin.pokemons.crear', compact('titlePage'));
+        $crecimientos = Crecimiento::all();
+        $ciclosHuevo = CicloHuevo::all();
+        $objetos = Objeto::all();
+        $gruposHuevo = GrupoHuevo::all();
+        $habilidades = Habilidad::all();
+        $tipos = Tipo::all();
+        $generaciones = Generacion::all();
+        return view('admin.pokemons.crear', ['crecimientos' => $crecimientos, 
+        'ciclosHuevo' => $ciclosHuevo, 
+        'objetos' => $objetos, 
+        'gruposHuevo' => $gruposHuevo,
+        'habilidades' => $habilidades,
+        'tipos' => $tipos, 
+        'generaciones' => $generaciones], compact('titlePage'));
     }
 
     /**
@@ -39,6 +59,7 @@ class PokemonController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'nombre' => 'required',
             'experienciaBase' => 'required',
