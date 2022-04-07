@@ -67,5 +67,6 @@
     </div>    
 
       @yield('content')
+      <script type="text/javascript" src="{{ asset('js/index.js') }}"></script>
 </body>
 </html>

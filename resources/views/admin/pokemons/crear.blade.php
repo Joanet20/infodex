@@ -216,17 +216,4 @@
   <button type="submit" class="btn btn-primary m-3">Crear</button>
 </form>
 
-<script>
-    function comprobarUnicaForma(){
-    var esUnicaForma = document.querySelector("unicaForma");
-    var forma = document.querySelector("nombreForma");
-
-    if(esUnicaForma == true){
-        forma.setAttribute("disabled", "");
-    } else {
-        forma.removeAttribute("disabled");
-    }
-}
-</script>
-
 @endsection
