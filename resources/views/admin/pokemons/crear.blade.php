@@ -52,14 +52,14 @@
 
     <label for="evEntregado2" class="form-label">EV entregado y cantidad (2)</label>
     <select class="form-select" name="evEntregado2" id="evEntregado2">
-        <option selected>Selecciona el EV</option>
+        <option value="" selected>Selecciona el EV</option-->
         @foreach (config('enumEVEntregado.evEntregado') as $ev)
         <option value="{{ $ev }}">{{ $ev }}</option>
         @endforeach
     </select>
 
-    <select class="form-select" name="cantidadEV2" id="cantidadEV2">
-        <option selected>Selecciona la cantidad</option>
+    <select class="form-select" name="canridadEV2" id="cantidadEV2">
+        <option value="" selected>Selecciona la cantidad</option>
         @foreach (config('enumCantEV.cantEV') as $cantev)
         <option value="{{ $cantev }}">{{ $cantev }}</option>
         @endforeach
@@ -67,14 +67,14 @@
 
     <label for="evEntregado3" class="form-label">EV entregado y cantidad (3)</label>
     <select class="form-select" name="evEntregado3" id="evEntregado3">
-        <option selected>Selecciona el EV</option>
+        <option value="" selected>Selecciona el EV</option>
         @foreach (config('enumEVEntregado.evEntregado') as $ev)
         <option value="{{ $ev }}">{{ $ev }}</option>
         @endforeach
     </select>
 
     <select class="form-select" name="cantidadEV3" id="cantidadEV3">
-        <option selected>Selecciona la cantidad</option>
+        <option value="" selected>Selecciona la cantidad</option>
         @foreach (config('enumCantEV.cantEV') as $cantev)
         <option value="{{ $cantev }}">{{ $cantev }}</option>
         @endforeach
@@ -86,18 +86,19 @@
     <label for="amistadBase" class="form-label">Amistad base</label>
     <input type="number" class="form-control" id="amistadBase" aria-describedby="emailHelp" name="amistadBase">
 
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="1" id="sinGenero" name="sinGenero" onclick="tieneGenero()">
+        <label class="form-check-label" for="sinGenero">
+        Sin género
+        </label>
+    </div>
+
     <label for="probMacho" class="form-label">Probabilidad de Macho</label>
     <input type="number" class="form-control" id="probMacho" aria-describedby="emailHelp" name="probMacho">
 
     <label for="probHembra" class="form-label">Probabilidad de Hembra</label>
     <input type="number" class="form-control" id="probHembra" aria-describedby="emailHelp" name="probHembra">
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="1" id="sinGenero" name="sinGenero">
-        <label class="form-check-label" for="sinGenero">
-        Sin género
-        </label>
-    </div>
 
     <div class="form-check">
         <input class="form-check-input" type="checkbox" value="1" id="unicaForma" name="unicaForma" onclick="comprobarUnicaForma()">
@@ -142,7 +143,7 @@
 
     <label for="objeto_id" class="form-label">Objeto equipado</label>
     <select class="form-select"  name="objeto_id" id="objeto_id">
-        <option selected>Selecciona el objeto equipado</option>
+        <option value="" selected>Selecciona el objeto equipado</option>
         @foreach ($objetos as $objeto)
         <option value="{{ $objeto->id }}">{{ $objeto->nombre }}</option>
         @endforeach
@@ -158,7 +159,7 @@
 
     <label for="grupoHuevo2_id" class="form-label">Grupo huevo 2</label>
     <select class="form-select"  name="grupoHuevo2_id" id="grupoHuevo2_id">
-        <option selected>Selecciona el grupo huevo 2</option>
+        <option value="" selected>Selecciona el grupo huevo 2</option>
         @foreach ($gruposHuevo as $grupoHuevo)
         <option value="{{ $grupoHuevo->id }}">{{ $grupoHuevo->nombre }}</option>
         @endforeach
@@ -174,7 +175,7 @@
 
     <label for="habilidad2_id" class="form-label">Habilidad 2</label>
     <select class="form-select"  name="habilidad2_id" id="habilidad2_id">
-        <option selected>Selecciona la habilidad 2</option>
+        <option value="" selected>Selecciona la habilidad 2</option>
         @foreach ($habilidades as $habilidad)
         <option value="{{ $habilidad->id }}">{{ $habilidad->nombre }}</option>
         @endforeach
@@ -182,7 +183,7 @@
 
     <label for="habilidadOculta_id" class="form-label">Habilidad oculta</label>
     <select class="form-select"  name="habilidadOculta_id" id="habilidadOculta_id">
-        <option selected>Selecciona la habilidad oculta</option>
+        <option value="" selected>Selecciona la habilidad oculta</option>
         @foreach ($habilidades as $habilidad)
         <option value="{{ $habilidad->id }}">{{ $habilidad->nombre }}</option>
         @endforeach
@@ -198,7 +199,7 @@
 
     <label for="tipo2_id" class="form-label">Tipo 2</label>
     <select class="form-select"  name="tipo2_id" id="tipo2_id">
-        <option selected>Selecciona el tipo 2</option>
+        <option value="" selected>Selecciona el tipo 2</option>
         @foreach ($tipos as $tipo)
         <option value="{{ $tipo->id }}">{{ $tipo->nombre }}</option>
         @endforeach

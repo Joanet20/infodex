@@ -64,6 +64,10 @@
         <a class="text-decoration-none text-dark" href=" {{ route('pokemons.index') }}">Pokémon</a>
       </div>
 
+      <div class="col-3  text-center py-2">
+        <a class="text-decoration-none text-dark" href=" {{ route('cadenasEvolutivas.index') }}">Cadenas evolutivas</a>
+      </div>
+
     </div>    
 
       @yield('content')

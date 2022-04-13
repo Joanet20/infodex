@@ -65,14 +65,12 @@ class PokemonController extends Controller
             'experienciaBase' => 'required',
             'altura' => 'required',
             'peso' => 'required',
-            'dex_nacional' => 'required|min:3',
+            'dex_nacional' => 'required',
             'categoria' => 'required',
-            'ev_entregado' => 'required',
+            'evEntregado' => 'required',
             'cantidadEV' => 'required',
             'ratioCaptura' => 'required',
             'amistadBase' => 'required',
-            'sinGenero' => 'required',
-            'unicaForma' => 'required',
             'nombre_jap' => 'required',
             'nombre_ale' => 'required',
             'nombre_ing' => 'required',
@@ -85,22 +83,60 @@ class PokemonController extends Controller
         $pokemon->experienciaBase = $request->experienciaBase;
         $pokemon->altura = $request->altura;
         $pokemon->peso = $request->peso;
-        $pokemon->dexNacional = $request->dexNacional;
+        $pokemon->dex_nacional = $request->dex_nacional;
+
+        $stringDex = $request->dex_nacional;
+        if (strlen($stringDex) < 3) {
+            $calc = 3 - strlen($stringDex);
+
+            for ($i=0; $i < $calc; $i++) { 
+                $stringDex = "0" . $stringDex;
+            }
+
+        $pokemon->dex_nacional = $stringDex;
+        }
+
         $pokemon->cambios = $request->cambios;
         $pokemon->categoria = $request->categoria;
         $pokemon->evEntregado = $request->evEntregado;
         $pokemon->cantidadEV = $request->cantidadEV;
         $pokemon->evEntregado2 = $request->evEntregado2;
-        $pokemon->cantidadEV2 = $request->cantidadEV2;
+        $pokemon->canridadEV2 = $request->canridadEV2;
+
+        if ($request->evEntregado2 == null || $request->canridadEV2 == null) {
+            $pokemon->evEntregado2 = null;
+            $pokemon->canridadEV2 = null;
+        }
+
         $pokemon->evEntregado3 = $request->evEntregado3;
         $pokemon->cantidadEV3 = $request->cantidadEV3;
+
+
+        if ($request->evEntregado3 == null || $request->cantidadEV3 == null) {
+            $pokemon->evEntregado3 = null;
+            $pokemon->cantidadEV3 = null;
+        }
+
         $pokemon->ratioCaptura = $request->ratioCaptura;
         $pokemon->amistadBase = $request->amistadBase;
         $pokemon->probMacho = $request->probMacho;
         $pokemon->probHembra = $request->probHembra;
         $pokemon->sinGenero = $request->sinGenero;
+
+        if ($request->sinGenero == null) {
+            $pokemon->sinGenero = 0;
+        }
+
         $pokemon->unicaForma = $request->unicaForma;
-        $pokemon->nombreForma = $request->nombreForma;
+
+        if ($request->unicaForma == null) {
+            $pokemon->unicaForma = 0;
+            $pokemon->nombreForma = $request->nombre;
+        } else {
+            $pokemon->nombreForma = $request->nombreForma;
+        }
+
+        
         $pokemon->nombre_jap = $request->nombre_jap;
         $pokemon->nombre_ale = $request->nombre_ale;
         $pokemon->nombre_ing = $request->nombre_ing;
@@ -109,6 +145,7 @@ class PokemonController extends Controller
         $pokemon->crecimiento_id = $request->crecimiento_id;
         $pokemon->ciclosHuevo_id = $request->ciclosHuevo_id;
         $pokemon->objeto_id = $request->objeto_id;
+
         $pokemon->grupoHuevo_id = $request->grupoHuevo_id;
         $pokemon->grupoHuevo2_id = $request->grupoHuevo2_id;
         $pokemon->habilidad_id = $request->habilidad_id;
@@ -117,8 +154,14 @@ class PokemonController extends Controller
         $pokemon->tipo_id = $request->tipo_id;
         $pokemon->tipo2_id = $request->tipo2_id;
         $pokemon->generacion_id = $request->generacion_id;
+
+        //dd($pokemon);
         $pokemon->save();
 
+        
+
+        
+        
         return redirect()->route('pokemons.index')->with('success', 'Se ha añadido el Pokémon');
     }
 
@@ -131,8 +174,22 @@ class PokemonController extends Controller
     public function show($id)
     {
         $pokemon = Pokemon::find($id);
-        $titlePage = $pokemon->nombreForma;
-        return view('admin.pokemons.show', ['pokemon' => $pokemon], compact('titlePage'));
+        $crecimientos = Crecimiento::all();
+        $ciclosHuevo = CicloHuevo::all();
+        $objetos = Objeto::all();
+        $gruposHuevo = GrupoHuevo::all();
+        $habilidades = Habilidad::all();
+        $tipos = Tipo::all();
+        $generaciones = Generacion::all();
+        $titlePage = $pokemon->nombre;
+        return view('admin.pokemons.show', ['pokemon' => $pokemon, 
+        'crecimientos' => $crecimientos, 
+        'ciclosHuevo' => $ciclosHuevo, 
+        'objetos' => $objetos, 
+        'gruposHuevo' => $gruposHuevo,
+        'habilidades' => $habilidades,
+        'tipos' => $tipos, 
+        'generaciones' => $generaciones], compact('titlePage'));
     }
 
     /**
@@ -161,22 +218,61 @@ class PokemonController extends Controller
         $pokemon->experienciaBase = $request->experienciaBase;
         $pokemon->altura = $request->altura;
         $pokemon->peso = $request->peso;
-        $pokemon->dexNacional = $request->dexNacional;
+        $pokemon->dex_nacional = $request->dex_nacional;
+
+        $stringDex = $request->dex_nacional;
+        if (strlen($stringDex) < 3) {
+            $calc = 3 - strlen($stringDex);
+
+            for ($i=0; $i < $calc; $i++) { 
+                $stringDex = "0" . $stringDex;
+            }
+
+        $pokemon->dex_nacional = $stringDex;
+        }
+
+
         $pokemon->cambios = $request->cambios;
         $pokemon->categoria = $request->categoria;
         $pokemon->evEntregado = $request->evEntregado;
         $pokemon->cantidadEV = $request->cantidadEV;
         $pokemon->evEntregado2 = $request->evEntregado2;
-        $pokemon->cantidadEV2 = $request->cantidadEV2;
+        $pokemon->canridadEV2 = $request->canridadEV2;
+
+        if ($request->evEntregado2 == null || $request->canridadEV2 == null) {
+            $pokemon->evEntregado2 = null;
+            $pokemon->canridadEV2 = null;
+        }
+
         $pokemon->evEntregado3 = $request->evEntregado3;
         $pokemon->cantidadEV3 = $request->cantidadEV3;
+
+
+        if ($request->evEntregado3 == null || $request->cantidadEV3 == null) {
+            $pokemon->evEntregado3 = null;
+            $pokemon->cantidadEV3 = null;
+        }
+
         $pokemon->ratioCaptura = $request->ratioCaptura;
         $pokemon->amistadBase = $request->amistadBase;
         $pokemon->probMacho = $request->probMacho;
         $pokemon->probHembra = $request->probHembra;
         $pokemon->sinGenero = $request->sinGenero;
+
+        if ($request->sinGenero == null) {
+            $pokemon->sinGenero = 0;
+        }
+
         $pokemon->unicaForma = $request->unicaForma;
-        $pokemon->nombreForma = $request->nombreForma;
+
+        if ($request->unicaForma == null) {
+            $pokemon->unicaForma = 0;
+            $pokemon->nombreForma = $request->nombre;
+        } else {
+            $pokemon->nombreForma = $request->nombreForma;
+        }
+
+        
         $pokemon->nombre_jap = $request->nombre_jap;
         $pokemon->nombre_ale = $request->nombre_ale;
         $pokemon->nombre_ing = $request->nombre_ing;
@@ -185,6 +281,7 @@ class PokemonController extends Controller
         $pokemon->crecimiento_id = $request->crecimiento_id;
         $pokemon->ciclosHuevo_id = $request->ciclosHuevo_id;
         $pokemon->objeto_id = $request->objeto_id;
+
         $pokemon->grupoHuevo_id = $request->grupoHuevo_id;
         $pokemon->grupoHuevo2_id = $request->grupoHuevo2_id;
         $pokemon->habilidad_id = $request->habilidad_id;

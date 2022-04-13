@@ -19,7 +19,7 @@ class CreatePokemonTable extends Migration
             $table->integer('experienciaBase');
             $table->float('altura', 10, 0);
             $table->float('peso', 10, 0);
-            $table->integer('dex_nacional');
+            $table->string('dex_nacional');
             $table->string('cambios', 500)->nullable();
             $table->string('categoria', 50);
             $table->enum('evEntregado', array_values(config('enumEVEntregado.evEntregado')));
@@ -32,8 +32,8 @@ class CreatePokemonTable extends Migration
             $table->integer('amistadBase');
             $table->float('probMacho', 10, 0)->nullable();
             $table->float('probHembra', 10, 0)->nullable();
-            $table->boolean('sinGenero');
-            $table->boolean('unicaForma');
+            $table->boolean('sinGenero')->nullable();
+            $table->boolean('unicaForma')->nullable();
             $table->string('nombreForma', 20)->nullable();
             $table->string('nombre_jap', 50);
             $table->string('nombre_ale', 50);

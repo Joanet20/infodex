@@ -14,9 +14,11 @@ class CreateEvolucionTable extends Migration
     public function up()
     {
         Schema::create('evolucion', function (Blueprint $table) {
-            $table->foreignId('id_pokemon')->index('pokemonPorEvolucionar');
+            $table->bigIncrements('id');
+            $table->string('metodoEvolucion');
+            /*$table->foreignId('id_pokemon')->index('pokemonPorEvolucionar');
             $table->foreignId('evolucionado')->index('pokemonEvolucionado');
-            $table->foreignId('metodoEvolucion')->index('metodoEvolucion');
+            $table->foreignId('metodoEvolucion')->index('metodoEvolucion');*/
         });
     }
 

@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\RegionController;
 use App\Http\Controllers\Admin\PokedexController;
 use App\Http\Controllers\Admin\MovimientoController;
 use App\Http\Controllers\Admin\PokemonController;
+use App\Http\Controllers\Admin\CadenaEvolutivaController;
 
 
 /*
@@ -92,6 +93,9 @@ Route::resource('/admin/movimientos', MovimientoController::class);
 
 // Pokémon
 Route::resource('/admin/pokemons', PokemonController::class);
+
+// Pokémon
+Route::resource('/admin/cadenasEvolutivas', CadenaEvolutivaController::class);
 
 
 Auth::routes();
